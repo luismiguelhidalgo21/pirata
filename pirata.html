@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen Rebotando con Texto</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            position: relative;
+        }
+        #container {
+            position: absolute;
+            text-align: center; /* Centrar el texto debajo de la imagen */
+        }
+        #bouncing-image {
+            width: 300px; /* Imagen más grande */
+            height: 300px; /* Imagen más grande */
+            display: block; /* Asegurar que la imagen esté en una línea separada */
+        }
+        #text {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.8); /* Texto visible */
+            font-family: 'Arial', sans-serif;
+            text-transform: uppercase;
+            margin-top: 10px; /* Espacio entre la imagen y el texto */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="bouncing-image" src="pirata de culiacan.jfif" alt="Imagen Rebotando">
+        <div id="text">Descansa en Paz</div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        let x = Math.random() * (window.innerWidth - 200); // Ancho de la imagen
+        let y = Math.random() * (window.innerHeight - 250); // Alto de la imagen + texto
+        let dx = 2;
+        let dy = 2;
+
+        function moveContainer() {
+            x += dx;
+            y += dy;
+
+            // Rebotar en los bordes de la pantalla
+            if (x + 200 > window.innerWidth || x < 0) {
+                dx = -dx;
+            }
+            if (y + 250 > window.innerHeight || y < 0) {
+                dy = -dy;
+            }
+
+            // Actualizar la posición del contenedor
+            container.style.left = x + 'px';
+            container.style.top = y + 'px';
+
+            requestAnimationFrame(moveContainer);
+        }
+
+        moveContainer();
+    </script>
+<audio controls>
+    <source src="QUE ROLLO PLEBES Música del Pirata Lyrics.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+</body>
+</html>
